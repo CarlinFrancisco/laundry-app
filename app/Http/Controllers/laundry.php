@@ -18,8 +18,11 @@ class Laundry extends Controller
         return view("login");
     }
 
-    public function aksilogin(Request $request)
+   public function aksilogin(Request $request)
     {
+        // Debug untuk cek data yang dikirim dari form login
+        // dd($request->all());
+
         $user = DB::table('users')
             ->where('name', $request->input('username'))
             ->where('password', $request->input('password'))
@@ -32,7 +35,6 @@ class Laundry extends Controller
             return redirect('/')->with('error', 'Username atau Password salah!');
         }
     }
-
     public function home()
     {
         if (session('u')) {
